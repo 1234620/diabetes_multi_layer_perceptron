@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diabetes Risk Prediction - Doctor Console</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="container">
+      <h1>Diabetes Risk Prediction</h1>
+      <p class="subtitle">Doctor Console</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>1) Load Model Files</h2>
+      <p class="muted">Upload your trained files: <code>diabetes_mlp.keras</code>, <code>diabetes_meta.json</code>, <code>diabetes_classes.json</code>, and <code>diabetes_scaler.json</code>.</p>
+      <form id="upload-form">
+        <div class="grid grid-2">
+          <div class="field">
+            <label>Model (.keras)</label>
+            <input type="file" id="modelFile" accept=".keras" required />
+          </div>
+          <div class="field">
+            <label>Meta (.json)</label>
+            <input type="file" id="metaFile" accept=".json" required />
+          </div>
+          <div class="field">
+            <label>Classes (.json)</label>
+            <input type="file" id="classesFile" accept=".json" required />
+          </div>
+          <div class="field">
+            <label>Scaler (.json)</label>
+            <input type="file" id="scalerFile" accept=".json" required />
+          </div>
+        </div>
+        <button type="submit" class="btn">Upload & Load</button>
+      </form>
+      <div id="upload-status" class="status"></div>
+    </section>
+
+    <section class="card">
+      <h2>2) Enter Patient Data</h2>
+      <p class="muted">All numeric fields accept decimals. Gender is a dropdown.</p>
+      <form id="predict-form" class="disabled">
+        <div class="grid grid-3">
+          <div class="field">
+            <label>Age</label>
+            <input type="number" step="0.1" id="age" placeholder="e.g. 45" required />
+          </div>
+          <div class="field">
+            <label>Gender</label>
+            <select id="gender" required>
+              <option value="">Select</option>
+              <option value="M">Male (M)</option>
+              <option value="F">Female (F)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>BMI</label>
+            <input type="number" step="0.01" id="bmi" placeholder="e.g. 27.4" required />
+          </div>
+
+          <div class="field">
+            <label>Chol</label>
+            <input type="number" step="0.1" id="chol" placeholder="e.g. 190" required />
+          </div>
+          <div class="field">
+            <label>Triglycerides (TG)</label>
+            <input type="number" step="0.1" id="tg" placeholder="e.g. 150" required />
+          </div>
+          <div class="field">
+            <label>HDL</label>
+            <input type="number" step="0.1" id="hdl" placeholder="e.g. 45" required />
+          </div>
+
+          <div class="field">
+            <label>LDL</label>
+            <input type="number" step="0.1" id="ldl" placeholder="e.g. 120" required />
+          </div>
+          <div class="field">
+            <label>Creatinine</label>
+            <input type="number" step="0.01" id="creatinine" placeholder="e.g. 0.9" required />
+          </div>
+          <div class="field">
+            <label>BUN (Blood Urea Nitrogen)</label>
+            <input type="number" step="0.1" id="bun" placeholder="e.g. 14" required />
+          </div>
+        </div>
+        <button type="submit" class="btn primary">Predict Diabetes</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>3) Result</h2>
+      <div id="result" class="result"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <span class="muted">For clinical decision support. Verify against patient context.</span>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+  <script>
+    // Set backend base URL if hosted elsewhere
+    window.APP_CONFIG = {
+      BASE_URL: '' // same origin by default
+    };
+  </script>
+</body>
+<style>
+</style>
+</html>
+
