@@ -11,7 +11,7 @@
 
 <!-- helloo -->
 
-This project provides a doctor-facing web interface and API for diabetes risk prediction using a trained Keras Multi Layer Perceptron model.
+Web-based application for diabetes risk prediction using a Keras MLP model. Provides a FastAPI backend with a simple UI for patient input, supports runtime model uploads, and enables inference through containerized deployment using Docker and Jenkins.
 
 The application supports:
 
